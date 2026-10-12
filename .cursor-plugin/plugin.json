@@ -1,0 +1,22 @@
+{
+  "name": "greatwait",
+  "displayName": "GreatWait",
+  "version": "1.0.0",
+  "description": "Reliable webhook scheduling for your agent, your app, and you! Schedule callbacks, inspect deliveries, and forecast upcoming webhook activity with GreatWait.",
+  "author": {
+    "name": "Flow XO"
+  },
+  "homepage": "https://greatwait.dev",
+  "repository": "https://github.com/flowxo/greatwait-cursor-plugin",
+  "license": "MIT",
+  "keywords": [
+    "greatwait",
+    "mcp",
+    "webhooks",
+    "scheduling",
+    "callbacks",
+    "forecasting"
+  ],
+  "logo": "assets/logo.svg",
+  "mcpServers": "mcp.json"
+}

@@ -1,0 +1,93 @@
+# GreatWait for Cursor
+
+<img src="assets/logo.svg" alt="GreatWait" width="96" />
+
+**Reliable webhook scheduling for your agent, your app, and you!**
+
+Connect Cursor to [GreatWait](https://greatwait.dev) to schedule webhook callbacks,
+inspect schedules and delivery attempts, and forecast upcoming webhook activity.
+Forecasting helps you see what is due before callbacks run.
+
+This plugin connects to the hosted GreatWait MCP service over Streamable HTTP.
+It contains the connection configuration and logo; it runs no local server and
+requires no API key in the plugin files.
+
+## Connect
+
+1. Install the plugin in Cursor. For a local installation, follow the steps below.
+2. Open Cursor's Customize or MCP settings and find the `greatwait` server.
+3. Start sign-in. Cursor discovers GreatWait's OAuth service and registers its
+   client dynamically. In GreatWait, select the project the connection will use
+   and review the requested permissions before approving.
+4. Return to Cursor and confirm the server is connected and its tools are visible.
+
+You need a GreatWait account and a project you can access. A connection works in
+the project selected during consent. Available tools depend on your role and
+permissions.
+
+**Review OAuth permissions carefully.** The current OAuth setup can request full
+access, including billing, API keys, and access administration. Decline consent
+if those permissions exceed what you intend to grant. This URL-only plugin does
+not narrow the service's OAuth permissions or tool catalog.
+
+Try a bounded read first:
+
+> List at most one existing GreatWait schedule. Do not create, change, cancel, or
+> deliver anything, and do not request additional permissions.
+
+Once you are satisfied with the connection, you can ask Cursor to schedule a
+callback to an HTTPS endpoint you control, inspect its delivery result, or
+forecast upcoming activity. Review actions that change schedules before allowing
+Cursor to perform them.
+
+## Local installation
+
+Cursor supports local plugins in `~/.cursor/plugins/local`:
+
+```sh
+git clone https://github.com/flowxo/greatwait-cursor-plugin.git \
+  ~/.cursor/plugins/local/greatwait
+```
+
+Restart Cursor or run **Developer: Reload Window**, then open **Customize** and
+confirm that the plugin's `greatwait` MCP server appears. Team policies may
+restrict local plugin imports; a Marketplace installation with the same name
+takes precedence over a local copy.
+
+The root `mcp.json` contains only:
+
+```json
+{
+  "mcpServers": {
+    "greatwait": {
+      "url": "https://api.greatwait.dev/mcp"
+    }
+  }
+}
+```
+
+For manual MCP setup without the plugin, use that entry in your Cursor MCP
+configuration. Use one installation method to avoid duplicate server entries.
+
+## Pricing and access
+
+The plugin is free, with no plugin surcharge. Normal GreatWait service usage
+pricing applies; installing the plugin does not include unlimited service usage.
+See [GreatWait](https://greatwait.dev) for current service pricing.
+
+To withdraw an OAuth connection, open GreatWait **Settings → Access → Connected
+applications** and withdraw its access. Cursor will then need a new authorization
+to use the service.
+
+## Help
+
+- [GreatWait MCP guide](https://docs.greatwait.dev/guides/mcp)
+- [Cursor MCP documentation](https://cursor.com/docs/mcp)
+- [Cursor local plugin installation](https://cursor.com/docs/plugins#test-plugins-locally)
+- [Report a wrapper issue](https://github.com/flowxo/greatwait-cursor-plugin/issues)
+
+The [MIT license](LICENSE) covers this wrapper. The hosted service remains
+subject to GreatWait's terms and usage pricing. The GreatWait name and logo
+remain the property of their owner; the wrapper license grants no trademark
+rights. The logo is the official asset from
+[greatwait.dev](https://greatwait.dev/brand/icon-primary.svg).

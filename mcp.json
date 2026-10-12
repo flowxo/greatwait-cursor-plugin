@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "greatwait": {
+      "url": "https://api.greatwait.dev/mcp"
+    }
+  }
+}
