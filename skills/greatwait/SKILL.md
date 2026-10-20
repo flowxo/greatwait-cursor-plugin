@@ -2,7 +2,7 @@
 name: greatwait
 description: Schedule a call to the user's own app or any API, and read whether it was delivered, through GreatWait's MCP server, HTTP API or command line.
 metadata:
-  version: "6836646d8c1c"
+  version: "e15ebd2c3abb"
 ---
 
 # GreatWait
@@ -10,7 +10,7 @@ metadata:
 Use this when a user wants something to happen later, or on a recurring
 schedule, by having GreatWait call their app or an API they choose.
 
-Source digest sha256:6836646d8c1c6c7ba28e9a154c39c09e794cee7bd78019f7fa3b35a7c9ec6481. It describes the production API at build 46febfc8d86e and, from npm, @greatwait/api-client@0.3.1, @greatwait/cli@0.3.1 and @greatwait/contracts@0.3.1.
+Source digest sha256:e15ebd2c3abbe878c9676558697c2d6da7cf237701e6a92a5d7d5a6095e02f21. It describes the production API at build 46febfc8d86e and, from npm, @greatwait/api-client@0.3.1, @greatwait/cli@0.3.1 and @greatwait/contracts@0.3.1.
 
 ## Connect
 
