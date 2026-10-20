@@ -1,0 +1,10 @@
+{
+  "name": "greatwait",
+  "version": "1.0.0",
+  "description": "Schedule webhook callbacks, inspect deliveries, and forecast upcoming activity with GreatWait.",
+  "mcpServers": {
+    "greatwait": {
+      "httpUrl": "https://api.greatwait.dev/mcp"
+    }
+  }
+}

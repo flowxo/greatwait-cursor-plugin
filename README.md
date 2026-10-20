@@ -1,18 +1,39 @@
-# GreatWait for Cursor
+# GreatWait for Cursor and Gemini CLI
 
 <img src="assets/logo.svg" alt="GreatWait" width="96" />
 
 **Reliable webhook scheduling for your agent, your app, and you!**
 
-Connect Cursor to [GreatWait](https://greatwait.dev) to schedule webhook callbacks,
+Connect Cursor or Gemini CLI to [GreatWait](https://greatwait.dev) to schedule webhook callbacks,
 inspect schedules and delivery attempts, and forecast upcoming webhook activity.
 Forecasting helps you see what is due before callbacks run.
 
-This plugin connects to the hosted GreatWait MCP service over Streamable HTTP.
-It contains the connection configuration and logo; it runs no local server and
-requires no API key in the plugin files.
+This repository contains a Cursor plugin and a Gemini CLI extension for the
+hosted GreatWait MCP service over Streamable HTTP. It contains only connection
+configuration and a logo; it runs no local server and requires no API key in
+the wrapper files.
 
-## Connect
+**Review OAuth permissions carefully.** The current OAuth setup can request full
+access, including billing, API keys, and access administration. Decline consent
+if those permissions exceed what you intend to grant. These URL-only wrappers do
+not narrow the service's OAuth permissions or tool catalog.
+
+## Connect with Gemini CLI
+
+Install the extension from this public repository:
+
+```sh
+gemini extensions install https://github.com/flowxo/greatwait-cursor-plugin
+```
+
+Review Gemini CLI's installation prompt. Start or restart Gemini CLI, then use
+`/mcp` to see the `greatwait` server. If it asks for authentication, use
+`/mcp auth greatwait`. Gemini CLI discovers GreatWait's OAuth service. In
+GreatWait, select the project the connection will use and review the requested
+permissions before approving. The extension's root `gemini-extension.json`
+points to `https://api.greatwait.dev/mcp` with Gemini's `httpUrl` setting.
+
+## Connect with Cursor
 
 1. Install the plugin in Cursor. For a local installation, follow the steps below.
 2. Open Cursor's Customize or MCP settings and find the `greatwait` server.
@@ -25,22 +46,19 @@ You need a GreatWait account and a project you can access. A connection works in
 the project selected during consent. Available tools depend on your role and
 permissions.
 
-**Review OAuth permissions carefully.** The current OAuth setup can request full
-access, including billing, API keys, and access administration. Decline consent
-if those permissions exceed what you intend to grant. This URL-only plugin does
-not narrow the service's OAuth permissions or tool catalog.
+## Use the connection
 
 Try a bounded read first:
 
 > List at most one existing GreatWait schedule. Do not create, change, cancel, or
 > deliver anything, and do not request additional permissions.
 
-Once you are satisfied with the connection, you can ask Cursor to schedule a
+Once you are satisfied with the connection, you can ask your agent to schedule a
 callback to an HTTPS endpoint you control, inspect its delivery result, or
 forecast upcoming activity. Review actions that change schedules before allowing
-Cursor to perform them.
+the agent to perform them.
 
-## Local installation
+## Cursor local installation
 
 Cursor supports local plugins in `~/.cursor/plugins/local`:
 
@@ -71,19 +89,20 @@ configuration. Use one installation method to avoid duplicate server entries.
 
 ## Pricing and access
 
-The plugin is free, with no plugin surcharge. Normal GreatWait service usage
-pricing applies; installing the plugin does not include unlimited service usage.
+The wrappers are free, with no wrapper surcharge. Normal GreatWait service usage
+pricing applies; installing them does not include unlimited service usage.
 See [GreatWait](https://greatwait.dev) for current service pricing.
 
 To withdraw an OAuth connection, open GreatWait **Settings → Access → Connected
-applications** and withdraw its access. Cursor will then need a new authorization
-to use the service.
+applications** and withdraw its access. The client will then need a new
+authorization to use the service.
 
 ## Help
 
 - [GreatWait MCP guide](https://docs.greatwait.dev/guides/mcp)
 - [Cursor MCP documentation](https://cursor.com/docs/mcp)
 - [Cursor local plugin installation](https://cursor.com/docs/plugins#test-plugins-locally)
+- [Gemini CLI extension installation](https://geminicli.com/docs/extensions/reference/#install-an-extension)
 - [Report a wrapper issue](https://github.com/flowxo/greatwait-cursor-plugin/issues)
 
 The [MIT license](LICENSE) covers this wrapper. The hosted service remains
