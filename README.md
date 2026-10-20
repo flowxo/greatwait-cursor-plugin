@@ -1,14 +1,14 @@
-# GreatWait for Cursor and Gemini CLI
+# GreatWait for Cursor, Gemini CLI, and Antigravity CLI
 
 <img src="assets/logo.svg" alt="GreatWait" width="96" />
 
 **Reliable webhook scheduling for your agent, your app, and you!**
 
-Connect Cursor or Gemini CLI to [GreatWait](https://greatwait.dev) to schedule webhook callbacks,
+Connect Cursor, Gemini CLI, or Antigravity CLI to [GreatWait](https://greatwait.dev) to schedule webhook callbacks,
 inspect schedules and delivery attempts, and forecast upcoming webhook activity.
 Forecasting helps you see what is due before callbacks run.
 
-This repository contains a Cursor plugin and a Gemini CLI extension for the
+This repository contains Cursor and Antigravity plugins and a Gemini CLI extension for the
 hosted GreatWait MCP service over Streamable HTTP. It contains only connection
 configuration and a logo; it runs no local server and requires no API key in
 the wrapper files.
@@ -17,6 +17,25 @@ the wrapper files.
 access, including billing, API keys, and access administration. Decline consent
 if those permissions exceed what you intend to grant. These URL-only wrappers do
 not narrow the service's OAuth permissions or tool catalog.
+
+## Connect with Antigravity CLI
+
+Install the plugin directly from this public repository:
+
+```sh
+agy plugin install https://github.com/flowxo/greatwait-cursor-plugin
+```
+
+Run `agy plugin list` to confirm `greatwait` is installed and enabled. Open
+Antigravity CLI and use `/mcp` to inspect the GreatWait server. Complete its
+OAuth authentication flow only after reviewing the requested permissions and
+selecting the intended GreatWait project. The root `plugin.json` identifies the
+plugin, and `mcp_config.json` connects to `https://api.greatwait.dev/mcp` using
+Antigravity's `serverUrl` setting. No GreatWait key is needed in either file.
+
+Antigravity's free access depends on Google account eligibility and availability.
+See its [account requirements](https://www.antigravity.google/docs/faq/) and
+[plans](https://www.antigravity.google/docs/plans/).
 
 ## Connect with Gemini CLI
 
@@ -103,6 +122,8 @@ authorization to use the service.
 - [Cursor MCP documentation](https://cursor.com/docs/mcp)
 - [Cursor local plugin installation](https://cursor.com/docs/plugins#test-plugins-locally)
 - [Gemini CLI extension installation](https://geminicli.com/docs/extensions/reference/#install-an-extension)
+- [Antigravity CLI plugins](https://www.antigravity.google/docs/plugins?tab=cli)
+- [Antigravity MCP configuration](https://www.antigravity.google/docs/mcp)
 - [Report a wrapper issue](https://github.com/flowxo/greatwait-cursor-plugin/issues)
 
 The [MIT license](LICENSE) covers this wrapper. The hosted service remains
