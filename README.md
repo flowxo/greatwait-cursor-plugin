@@ -80,7 +80,7 @@ cancel future work. It does not supply a GreatWait connection or grant access;
 connect your agent using the instructions above and review its OAuth
 permissions first. The skill is generated from GreatWait's first-party docs
 source; [its provenance](skills/greatwait/PROVENANCE.md) records the source
-build and limits of verification.
+build and the served copy it matches.
 
 ## Use the connection
 

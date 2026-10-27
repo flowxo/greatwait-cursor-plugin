@@ -2,7 +2,7 @@
 name: greatwait
 description: Schedule a call to the user's own app or any API, and read whether it was delivered, through GreatWait's MCP server, HTTP API or command line.
 metadata:
-  version: "e15ebd2c3abb"
+  version: "0c5834569226"
 ---
 
 # GreatWait
@@ -10,7 +10,7 @@ metadata:
 Use this when a user wants something to happen later, or on a recurring
 schedule, by having GreatWait call their app or an API they choose.
 
-Source digest sha256:e15ebd2c3abbe878c9676558697c2d6da7cf237701e6a92a5d7d5a6095e02f21. It describes the production API at build 46febfc8d86e and, from npm, @greatwait/api-client@0.3.1, @greatwait/cli@0.3.1 and @greatwait/contracts@0.3.1.
+Source digest sha256:0c583456922647c4256541ea7b7e1610c79cb3f74913281d4329264bdb9b8426. It describes the production API at build 5bd6919564cc and, from npm, @greatwait/api-client@0.3.1, @greatwait/cli@0.3.1 and @greatwait/contracts@0.3.1.
 
 ## Connect
 
@@ -26,7 +26,7 @@ Source digest sha256:e15ebd2c3abbe878c9676558697c2d6da7cf237701e6a92a5d7d5a6095e
 
 ## Create and verify
 
-1. After the user authorizes the resolved plan, freeze the exact `schedules_create` request body and one `Idempotency-Key` before the first call. GreatWait uses the project's endpoint at `url`, or creates one without returning its signing secret. Never change the key or recompute a relative `at` while recovering an uncertain response.
+1. Once the plan is resolved, and confirmed by the user where step 3 of Plan the call applies, freeze the exact `schedules_create` request body and one `Idempotency-Key` before the first call. GreatWait uses the project's endpoint at `url`, or creates one without returning its signing secret. Never change the key or recompute a relative `at` while recovering an uncertain response.
 2. If create returns no certain result, inspect `schedules_read` when an id is known, or `schedules_list` to reconcile the project's schedules. Do not blindly create again. An authorized replay within the 24-hour idempotency receipt window must use the same key and identical body; a changed body is refused. If the result remains uncertain or the receipt may have expired, report that uncertainty and ask before any further create.
 3. Read the schedule and `occurrences_read`; use `attempts_list` for actual attempts. A planned occurrence or passed due time is not delivery. Report pending, failed, cancelled, skipped or ambiguous states as such. Say GreatWait observed a receiver response only when the occurrence succeeded and an actual attempt succeeded with its response status. That response does not prove a downstream email, message or business action completed. Bound polling and report an unsettled result rather than waiting indefinitely.
 4. If the user asks to cancel, inspect the schedule and occurrence first. Cancel a one-shot before delivery starts; cancellation may still win a race as it becomes due. Cancelling a recurring schedule stops future work, not callbacks already sent. Use `schedules_cancel` only for the authorized schedule, read back its state, and treat `state_conflict` as not cancelled. Never claim cancellation undid a receiver action.
@@ -34,7 +34,7 @@ Source digest sha256:e15ebd2c3abbe878c9676558697c2d6da7cf237701e6a92a5d7d5a6095e
 ## Rules
 
 - A destination's signing secret and an API key are shown once. Never print, log, or pass either on a command line.
-- Use only a destination the user authorized. For an explicitly approved disposable test, ask for the user's unique webhook.site URL (for example, `https://webhook.site/paste-your-unique-id`). It is a third party and must receive no real data. Do not create or call a test destination just because the user asked to see GreatWait work.
+- Use only a destination the user authorized. For an explicitly approved disposable test, ask for the user's unique webhook.site URL (for example, `https://webhook.site/paste-your-unique-id`). It is a third party and must receive no real data. Do not create or call a test destination merely because the user asked to see GreatWait work.
 - Preserve the default structured envelope unless the receiver needs direct JSON. POST and PUT support both modes; GET has no body. Header rows have a Secret checkbox; ordinary values read back, secret values are write-only. Keep, replace, remove and inherited-header suppression are explicit actions.
 - For custom calls and safe credential input, read https://docs.greatwait.dev/guides/http-calls. Never print a receiver token or put it in command arguments.
 - Send an `Idempotency-Key` on every create. A replay is safe only with the original request body and key while its receipt remains valid; never use a fresh key to resolve an uncertain create.
