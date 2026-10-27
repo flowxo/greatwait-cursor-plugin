@@ -65,6 +65,23 @@ You need a GreatWait account and a project you can access. A connection works in
 the project selected during consent. Available tools depend on your role and
 permissions.
 
+## Agent skill
+
+Install the GreatWait scheduling skill from this repository with the
+[Skills CLI](https://www.skills.sh/docs/cli):
+
+```sh
+npx skills add flowxo/greatwait-cursor-plugin
+```
+
+Select `greatwait` if the CLI asks which skill to install. The skill explains
+how to plan an authorized callback, check an actual delivery attempt, and
+cancel future work. It does not supply a GreatWait connection or grant access;
+connect your agent using the instructions above and review its OAuth
+permissions first. The skill is generated from GreatWait's first-party docs
+source; [its provenance](skills/greatwait/PROVENANCE.md) records the source
+build and the served copy it matches.
+
 ## Use the connection
 
 Try a bounded read first:
